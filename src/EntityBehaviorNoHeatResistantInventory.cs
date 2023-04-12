@@ -1,5 +1,6 @@
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
+using Vintagestory.API.Config;
 
 namespace NoHeatResistantInventory;
 
@@ -18,12 +19,19 @@ public class EntityBehaviorNoHeatResistantInventory : EntityBehavior
         var player = (entity as EntityPlayer)?.Player;
         if (player == null) return true;
 
+        if (!IsPlayerInventory(slot)) return true;
+
         var currentGameMode = player.WorldData.CurrentGameMode;
         if (currentGameMode != EnumGameMode.Creative && currentGameMode != EnumGameMode.Spectator)
         {
             slot?.Inventory?.DropSlotIfHot(slot, player);
         }
         return true;
+    }
+
+    private static bool IsPlayerInventory(ItemSlot slot)
+    {
+        return slot.Inventory.ClassName is GlobalConstants.hotBarInvClassName or GlobalConstants.backpackInvClassName;
     }
 
     public override string PropertyName() => "noheatresistantinventory";
