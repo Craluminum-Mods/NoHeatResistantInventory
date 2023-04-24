@@ -1,11 +1,10 @@
 {
     "type": "code",
-    "side": "server",
     "modid": "noheatresistantinventory",
     "name": "No Heat Resistant Inventory",
     "description": "Entire player's inventory cannot have very hot items without tongs",
     "authors": ["Craluminum2413"],
-    "version": "1.0.1",
+    "version": "1.0.2",
     "dependencies": {
         "game": "1.18.0-rc.2"
     }
